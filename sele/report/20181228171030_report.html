@@ -1,0 +1,1505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>uiautomation2 python 自动化测试_测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 120%; }
+table       { font-size: 100%; }
+
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+    //console.log(detail_class.length)
+    if (level == 3) {
+        for (var i = 0; i < detail_class.length; i++){
+            detail_class[i].innerHTML="收起"
+        }
+    }
+    else{
+            for (var i = 0; i < detail_class.length; i++){
+            detail_class[i].innerHTML="详细"
+        }
+    }
+}
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">uiautomation2 python 自动化测试_测试报告</h1>
+<p class='attribute'><strong>测试人员 : </strong> 小贝</p>
+<p class='attribute'><strong>开始时间 : </strong> 2018-12-28 17:10:30</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:17:49.852354</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 20，错误 20，通过率= 0.00%</p>
+
+<p class='description'>用例执行情况：</p>
+</div>
+
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 0.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败+错误{ 0 + 20 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 0 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 20 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='errorClass warning'>
+    <td>test.manager.AutoAddtestcase.AutotestchecksearchCookieSplit.TestSearch</td>
+    <td class="text-center">20</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center">20</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',20)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='ft1_1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0001_Customers页-User ID-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_1'>错误</button>
+    <div id='div_ft1_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_1'>错误</button>
+    <div id='div_ft1_1' class="collapse in">
+    <pre>
+    
+1_1: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/customers/cus/cus/customers/cus/customers/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/customers/cus/cus/customers/cus/customers/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '57247e3f-0dfc-4cb4-9284-7dc9f6146df3', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div[1]/div[1]/div/form/div[1]/div[2]/input
+
+调用截取图片函数
+当前时间： 2018-12-28 17:11:17.170622
+时间串： 20181228171117
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:11:22.369782
+时间串： 20181228171122
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171122.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div[1]/div[1]/div/form/div[1]/div[2]/input
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 45, in definesearch
+    self.activeweb.findElementByXpathAndInput(selectinputxpath,str(selectinputtext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 130, in findElementByXpathAndInput
+    ele = self.findElementByXpath(path)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171122.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171122.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0002_Customers页-NoHP-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_2'>错误</button>
+    <div id='div_ft1_2' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_2'>错误</button>
+    <div id='div_ft1_2' class="collapse in">
+    <pre>
+    
+1_2: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/customers/cus/cus/customers/cus/customers/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/customers/cus/cus/customers/cus/customers/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': 'acd9bc0e-4e83-4910-a7e1-2330eb84142f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div[1]/div[1]/div/form/div[1]/div[1]/input
+
+调用截取图片函数
+当前时间： 2018-12-28 17:12:09.270237
+时间串： 20181228171209
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:12:14.456896
+时间串： 20181228171214
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171214.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div[1]/div[1]/div/form/div[1]/div[1]/input
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 45, in definesearch
+    self.activeweb.findElementByXpathAndInput(selectinputxpath,str(selectinputtext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 130, in findElementByXpathAndInput
+    ele = self.findElementByXpath(path)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171214.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171214.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0003_Report模块_Transaction Claim页-Related transaction-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_3'>错误</button>
+    <div id='div_ft1_3' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_3'>错误</button>
+    <div id='div_ft1_3' class="collapse in">
+    <pre>
+    
+1_3: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/re/claim/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/re/claim/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '9380e02f-db46-4e79-864b-b8cc5c6e34ce', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/div[2]/div/div[1]/div[1]/div/form/div[1]/div[1]/input
+
+调用截取图片函数
+当前时间： 2018-12-28 17:13:06.314981
+时间串： 20181228171306
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:13:11.484638
+时间串： 20181228171311
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171311.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/div[2]/div/div[1]/div[1]/div/form/div[1]/div[1]/input
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 45, in definesearch
+    self.activeweb.findElementByXpathAndInput(selectinputxpath,str(selectinputtext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 130, in findElementByXpathAndInput
+    ele = self.findElementByXpath(path)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171311.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171311.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0004_Report模块_Transaction Claim页-Related Customer_ID-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_4'>错误</button>
+    <div id='div_ft1_4' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_4'>错误</button>
+    <div id='div_ft1_4' class="collapse in">
+    <pre>
+    
+1_4: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/re/claim/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/re/claim/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '9d0d72f8-60b7-439f-8178-fba428999fd5', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/div[2]/div/div[1]/div[1]/div/form/div[1]/div[2]/input
+
+调用截取图片函数
+当前时间： 2018-12-28 17:13:58.590119
+时间串： 20181228171358
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:14:03.765776
+时间串： 20181228171403
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171403.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/div[2]/div/div[1]/div[1]/div/form/div[1]/div[2]/input
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 45, in definesearch
+    self.activeweb.findElementByXpathAndInput(selectinputxpath,str(selectinputtext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 130, in findElementByXpathAndInput
+    ele = self.findElementByXpath(path)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171403.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171403.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0005_Report模块_Closing account页-Customer_ID-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_5'>错误</button>
+    <div id='div_ft1_5' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_5'>错误</button>
+    <div id='div_ft1_5' class="collapse in">
+    <pre>
+    
+1_5: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/re/close/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/re/close/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': 'b7e0bddf-0f23-47a1-a237-57102e89ee2b', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:14:49.463079
+时间串： 20181228171449
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:14:54.628735
+时间串： 20181228171454
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171454.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171454.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171454.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_6' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0006_Report模块_Closing account页-Customer_NoHP-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_6'>错误</button>
+    <div id='div_ft1_6' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_6'>错误</button>
+    <div id='div_ft1_6' class="collapse in">
+    <pre>
+    
+1_6: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/re/close/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/re/close/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '57e1820c-06eb-4ce8-8b80-12a51ea07a6a', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:15:41.796725
+时间串： 20181228171541
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:15:46.960380
+时间串： 20181228171546
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171546.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171546.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171546.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_7' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0007_Operation模块_Identity audit页-Keyword_ID number-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_7'>错误</button>
+    <div id='div_ft1_7' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_7' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_7'>错误</button>
+    <div id='div_ft1_7' class="collapse in">
+    <pre>
+    
+1_7: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/aut/aut/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/aut/aut/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '511277bb-f143-4678-a53f-756704f28d6a', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:16:35.330023
+时间串： 20181228171635
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:16:40.494678
+时间串： 20181228171640
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171640.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171640.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171640.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_8' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0008_Operation模块_Identity audit页-Keyword_Userid-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_8'>错误</button>
+    <div id='div_ft1_8' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_8'>错误</button>
+    <div id='div_ft1_8' class="collapse in">
+    <pre>
+    
+1_8: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/aut/aut/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/aut/aut/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '806e13a4-5167-4925-9e17-66e5ba42e49a', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:17:28.773309
+时间串： 20181228171728
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:17:33.936965
+时间串： 20181228171733
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171733.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171733.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171733.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_9' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0009_Operation模块_Identity audit页-Keyword_Account-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_9'>错误</button>
+    <div id='div_ft1_9' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_9'>错误</button>
+    <div id='div_ft1_9' class="collapse in">
+    <pre>
+    
+1_9: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/aut/aut/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/aut/aut/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '20598c7e-f043-4cbc-afab-37d10b901738', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:18:21.466000
+时间串： 20181228171821
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:18:26.625655
+时间串： 20181228171826
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171826.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171826.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171826.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_10' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0010_Operation模块_Identity data页-Keyword_ID number-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_10'>错误</button>
+    <div id='div_ft1_10' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_10'>错误</button>
+    <div id='div_ft1_10' class="collapse in">
+    <pre>
+    
+1_10: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/IdenData/IdenData/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/IdenData/IdenData/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '10f38e45-88e5-499c-ba47-06e7974e3bdf', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:19:15.568370
+时间串： 20181228171915
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:19:20.733526
+时间串： 20181228171920
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171920.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171920.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228171920.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_11' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0011_Operation模块_Identity data页-Keyword_Userid-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_11' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_11'>错误</button>
+    <div id='div_ft1_11' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_11' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_11'>错误</button>
+    <div id='div_ft1_11' class="collapse in">
+    <pre>
+    
+1_11: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/IdenData/IdenData/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/IdenData/IdenData/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '25e374c4-3ab3-4151-9299-69b18ef25f7d', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:20:06.842881
+时间串： 20181228172006
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:20:12.004037
+时间串： 20181228172012
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172012.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172012.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172012.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_12' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0012_Operation模块_Identity data页-Keyword_Account-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_12' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_12'>错误</button>
+    <div id='div_ft1_12' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_12' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_12'>错误</button>
+    <div id='div_ft1_12' class="collapse in">
+    <pre>
+    
+1_12: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/IdenData/IdenData/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/operation/act/IdenData/IdenData/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '28c8c614-cdf7-471f-a86e-14fa54eabb39', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:20:59.871615
+时间串： 20181228172059
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:21:05.043272
+时间串： 20181228172105
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172105.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172105.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172105.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_13' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0013_Operation模块_Customer block页-Keyword_ID-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_13' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_13'>错误</button>
+    <div id='div_ft1_13' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_13' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_13'>错误</button>
+    <div id='div_ft1_13' class="collapse in">
+    <pre>
+    
+1_13: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/act/accountM/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/act/accountM/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '9857765b-eefc-4667-aa15-821ea5ca25af', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div[1]/div[1]/div[1]/form/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:21:55.127132
+时间串： 20181228172155
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:22:00.300289
+时间串： 20181228172200
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172200.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div[1]/div[1]/div[1]/form/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172200.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172200.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_14' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0014_Operation模块_Customer block页-Keyword_NoHP-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_14'>错误</button>
+    <div id='div_ft1_14' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_14' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_14'>错误</button>
+    <div id='div_ft1_14' class="collapse in">
+    <pre>
+    
+1_14: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/act/accountM/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/act/accountM/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': 'bffcf3ff-4a66-44fd-8e1a-dcf2af5ed8ac', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div[1]/div[1]/div[1]/form/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:22:48.426400
+时间串： 20181228172248
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:22:53.592556
+时间串： 20181228172253
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172253.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div[1]/div[1]/div[1]/form/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172253.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172253.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_15' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0015_Operation模块_Create order页-Customer_Login name-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_15' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_15'>错误</button>
+    <div id='div_ft1_15' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_15' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_15'>错误</button>
+    <div id='div_ft1_15' class="collapse in">
+    <pre>
+    
+1_15: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': 'e0c20e16-84f9-4a18-b988-84fa85e6e023', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:23:39.802424
+时间串： 20181228172339
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:23:44.969080
+时间串： 20181228172344
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172344.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172344.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172344.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_16' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0016_Operation模块_Create order页-Customer_id-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_16' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_16'>错误</button>
+    <div id='div_ft1_16' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_16' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_16'>错误</button>
+    <div id='div_ft1_16' class="collapse in">
+    <pre>
+    
+1_16: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '8a9816d5-42bf-4b79-942e-221e73aa8ad1', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div[1]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:24:32.893165
+时间串： 20181228172432
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:24:38.064322
+时间串： 20181228172438
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172438.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div[1]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172438.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172438.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_17' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0017_Operation模块_Create order页-Number-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_17' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_17'>错误</button>
+    <div id='div_ft1_17' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_17' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_17'>错误</button>
+    <div id='div_ft1_17' class="collapse in">
+    <pre>
+    
+1_17: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/list
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/list.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '1b851c57-4103-4bdb-984e-55bbe0980870', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div[2]/input
+
+调用截取图片函数
+当前时间： 2018-12-28 17:25:29.117805
+时间串： 20181228172529
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:25:34.283961
+时间串： 20181228172534
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172534.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div[1]/div[2]/input
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 45, in definesearch
+    self.activeweb.findElementByXpathAndInput(selectinputxpath,str(selectinputtext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 130, in findElementByXpathAndInput
+    ele = self.findElementByXpath(path)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172534.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172534.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_18' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0018_Operation模块_Order list页-Related transaction-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_18' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_18'>错误</button>
+    <div id='div_ft1_18' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_18' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_18'>错误</button>
+    <div id='div_ft1_18' class="collapse in">
+    <pre>
+    
+1_18: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/orderlist
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/orderlist.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '93e3f8f9-3359-4fcf-a555-bc2694a44d1a', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div/div/div[1]/input
+
+调用截取图片函数
+当前时间： 2018-12-28 17:26:22.028024
+时间串： 20181228172622
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:26:27.197680
+时间串： 20181228172627
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172627.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div/div/div[1]/input
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 45, in definesearch
+    self.activeweb.findElementByXpathAndInput(selectinputxpath,str(selectinputtext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 130, in findElementByXpathAndInput
+    ele = self.findElementByXpath(path)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172627.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172627.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_19' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0019_Operation模块_Order list页-Related Customer_uid-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_19' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_19'>错误</button>
+    <div id='div_ft1_19' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_19' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_19'>错误</button>
+    <div id='div_ft1_19' class="collapse in">
+    <pre>
+    
+1_19: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/orderlist
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/orderlist.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': '4ff1a8f9-9fb8-4864-8a09-4582eb2bb90d', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div/div/div[2]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:27:17.315544
+时间串： 20181228172717
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:27:22.476700
+时间串： 20181228172722
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172722.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div/div/div[2]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172722.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172722.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_20' class='none'>
+    <td class='errorCase'><div class='testcase'>test_func_0020_Operation模块_Order list页-Related Customer_name-输入长字符串查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_20' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_20'>错误</button>
+    <div id='div_ft1_20' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_20' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_20'>错误</button>
+    <div id='div_ft1_20' class="collapse in">
+    <pre>
+    
+1_20: self.cookie:[{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}]
+
+开始写入cookie-----------------
+
+进入网址：https://bjw.halodigit.com:9090/nereus/manager/index#/login
+写入cookie的值为：{'name': '.nereus.manager.sid', 'value': 'c730864f-ca43-4bea-895f-3cc62dbe747f'}
+刷新当前页面---------
+进入网址：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/orderlist
+url2为：https://m-mbmpay.ahdipay.com/nereus/manager/index#/complaint/orderlist.
+刷新当前页面---------
+等待5秒---
+获取的cookie的值为：{'name': '.nereus.manager.sid', 'value': 'ed43dabb-f240-40ec-a4ca-48ea9d05cc56', 'path': '/', 'domain': 'm-mbmpay.ahdipay.com', 'expiry': None, 'secure': False, 'httpOnly': True}
+Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div/div/div[2]/select
+
+调用截取图片函数
+当前时间： 2018-12-28 17:28:11.122877
+时间串： 20181228172811
+等待5秒---
+[1;31;0m
+[1;31;0m
+调用截取图片函数
+当前时间： 2018-12-28 17:28:16.292034
+时间串： 20181228172816
+[0m
+*****
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172816.png
+*****
+停顿5秒后再次查找依然未找到元素，关闭驱动.问题描述： Message: Unable to locate element: /html/body/div[3]/div[2]/ui-view/ui-view/div[2]/div/div/div[1]/div[1]/form/div/div/div[2]/select
+
+[0m
+Traceback (most recent call last):
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 59, in func
+    self.definesearch(num,is_cookie,url,selectxpath,selectoptiontext,selectinputxpath,selectinputtext,searchbuttonxpath,searchtableresultxpath,colnum,checktext)
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\test\manager\AutoAddtestcase\AutotestchecksearchCookieSplit.py", line 43, in definesearch
+    self.activeweb.findElementByXpathAndReturnOptions(selectxpath,str(selectoptiontext))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 167, in findElementByXpathAndReturnOptions
+    ele = Select(self.findElementByXpath(path))
+  File "D:\Users\Administrator\PycharmProjects\seleniumweb\sele\base\activebase.py", line 88, in findElementByXpath
+    return ele
+UnboundLocalError: local variable 'ele' referenced before assignment
+
+<img  src="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172816.png
+" alt="picture_shot" height="480" width="270"></img>
+<a    href="file:///
+D:\Users\Administrator\PycharmProjects\seleniumweb\sele/screenshots/screenpicture_20181228172816.png
+">picture_shot</a>
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>20</td>
+    <td>0</td>
+    <td>0</td>
+    <td>20</td>
+    <td>通过率：0.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+
+</body>
+</html>
